@@ -15,4 +15,3 @@ class CfgPatches {
 };
 
 #include "modules.hpp"
-#include "loadouts.hpp"

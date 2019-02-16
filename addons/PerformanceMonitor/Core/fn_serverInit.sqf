@@ -20,7 +20,7 @@
 [
 	PERF_INFO_RECEIVE,
 	{
-		params["_sender", "_minFPS", "_maxFPS", "_avg"];
+		_this select 0 params["_sender", "_minFPS", "_maxFPS", "_avg"];
 		
 		"logger" callExtension format ["%1;%2;%3;%4", _sender, _minFPS, _maxFPS, _avg];
 	}
@@ -47,5 +47,7 @@ GVAR(recursiveInfoSending) = {
 			FRAMEBUFFER_SIZE,
 			[]
 		] call CFUNC(skipFrames);
+		
+		"logger" callExtension format["------------------------ Started %1 ------------------------, missionName];
 	}
 ] call CFUNC(addEventHandler);

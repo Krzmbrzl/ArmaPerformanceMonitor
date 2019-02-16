@@ -1,7 +1,7 @@
 #include "\tc\CLib\addons\CLib\ModuleMacros.hpp"
 
 class CfgCLibModules {
-    class Coopetition {
+    class PerformanceMonitor {
         path = "\rvn\PerformanceMonitor\addons\PerformanceMonitor";
 
         // Core
