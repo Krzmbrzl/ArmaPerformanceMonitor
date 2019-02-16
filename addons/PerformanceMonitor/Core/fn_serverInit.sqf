@@ -48,6 +48,6 @@ GVAR(recursiveInfoSending) = {
 			[]
 		] call CFUNC(skipFrames);
 		
-		"logger" callExtension format["------------------------ Started %1 ------------------------, missionName];
+		"logger" callExtension format["------------------------ Started %1 ------------------------", missionName];
 	}
 ] call CFUNC(addEventHandler);
