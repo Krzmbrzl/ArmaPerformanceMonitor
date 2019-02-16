@@ -3,3 +3,6 @@
 
 # but don't ignore further .gitignore-files
 !.gitignore
+
+# Arma-files
+*.pbo
