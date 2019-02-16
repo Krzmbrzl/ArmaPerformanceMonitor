@@ -15,6 +15,8 @@
 
 // Linux-specific
 #include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 void RVExtensionVersion(char *armaOutput, int outputSize) {
 	std::string("1.0").copy(armaOutput, 4);
@@ -72,7 +74,12 @@ void RVExtension(char *armaOutput, int outputSize, const char *in) {
 		strftime(buffer,sizeof(buffer),"%d-%m-%Y_%H:%M:%S", timeinfo);
 		std::string strTime(buffer);
 
-		logFilePath = currentPath + "performanceLogs" + PATH_SEP + strTime + ".log";
+		logFilePath = currentPath + "performanceLogs";
+
+		// make sure directory exists
+		mkdir(logFilePath.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+
+		logFilePath = logFilePath + PATH_SEP + strTime + ".log";
 	}
 
 	static std::ofstream logStream(logFilePath, std::ios_base::app);
@@ -85,7 +92,7 @@ void RVExtension(char *armaOutput, int outputSize, const char *in) {
 	time(&rawtime);
 	timeinfo = localtime(&rawtime);
 
-	strftime(buffer,sizeof(buffer),"%d-%m-%Y%H:%M:%S", timeinfo);
+	strftime(buffer,sizeof(buffer),"%d-%m-%Y %H:%M:%S", timeinfo);
 	std::string strTime(buffer);
 
 	logStream << strTime << " - " <<  in << std::endl;
