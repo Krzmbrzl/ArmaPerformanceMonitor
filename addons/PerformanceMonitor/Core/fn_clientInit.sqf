@@ -32,7 +32,7 @@ GVAR(recursiveInfoSending) = {
 	"missionStarted",
 	{		
 		// delay according to sender group
-		private _delay = (allPlayers find player) mod SENDER_GROUP_COUNT;
+		private _delay = diag_tickTime random SENDER_GROUP_COUNT;
 		
 		[
 			{
