@@ -10,6 +10,8 @@ class CfgCLibModules {
             FNC(clientInit);
             FNC(serverInit);
             FNC(init);
+			FNC(togglePerformanceInfoSending);
+			FNC(recursiveInfoSending);
         };
     };
 };

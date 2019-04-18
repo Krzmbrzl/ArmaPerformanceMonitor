@@ -6,3 +6,8 @@
 
 # Arma-files
 *.pbo
+*.bisign
+
+# scripts
+*.sh
+*.bat

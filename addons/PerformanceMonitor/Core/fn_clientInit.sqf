@@ -15,33 +15,16 @@
  * 
  */
 
-#define CLIENT_UPDATE_INTERVAL 10
-
-GVAR(recursiveInfoSending) = {
-	// abort if sending is turned off
-	if (!GVAR(isSendingPerformanceInfo)) exitWith {};
-	
-	// send one right away
-	[] call GVAR(sendInfo);
-	
-	// schedule for regular sendings
-	[GVAR(recursiveInfoSending), CLIENT_UPDATE_INTERVAL, []] call CFUNC(wait);
-};
-
 [
 	"missionStarted",
 	{		
-		// delay according to sender group
+		// delay according to sender group -> Space out client-server communication as evenly as possible
 		private _delay = diag_tickTime random SENDER_GROUP_COUNT;
 		
 		[
 			{
-				// wait at least until the frame-buffer has been completely filled before sending perf. info to server
-				[
-					GVAR(toggleSendingPerformanceInfo),
-					FRAMEBUFFER_SIZE,
-					[]
-				] call CFUNC(skipFrames);
+				// toggle performance monitoring on
+				[] call FUNC(togglePerformanceInfoSending),
 			},
 			_delay,
 			[]

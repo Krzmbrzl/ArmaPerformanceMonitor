@@ -15,38 +15,20 @@
  * 
  */
 
-#define SERVER_UPDATE_INTERVAL 5
-
 [
 	PERF_INFO_RECEIVE,
 	{
-		_this select 0 params["_sender", "_minFPS", "_maxFPS", "_avg"];
+		_this select 0 params["_sender", "_fps"];
 		
-		"logger" callExtension format ["%1;%2;%3;%4", _sender, _minFPS, _maxFPS, _avg];
+		"logger" callExtension format ["%1;%2;", _sender, _fps];
 	}
 ] call CFUNC(addEventHandler);
-
-
-GVAR(recursiveInfoSending) = {
-	// abort if sending is turned off
-	if (!GVAR(isSendingPerformanceInfo)) exitWith {};
-	
-	// send one right away
-	[] call GVAR(sendInfo);
-	
-	// schedule for regular sendings
-	[GVAR(recursiveInfoSending), SERVER_UPDATE_INTERVAL, []] call CFUNC(wait);
-};
 
 [
 	"missionStarted",
 	{
-		// wait at least until the frame-buffer has been completely filled before sending perf. info to server
-		[
-			GVAR(toggleSendingPerformanceInfo),
-			FRAMEBUFFER_SIZE,
-			[]
-		] call CFUNC(skipFrames);
+		// toggle performance monitoring on
+		[] call FUNC(togglePerformanceInfoSending);
 		
 		"logger" callExtension format["------------------------ Started %1 ------------------------", missionName];
 	}
