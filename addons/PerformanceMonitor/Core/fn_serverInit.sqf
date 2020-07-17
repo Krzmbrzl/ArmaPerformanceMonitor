@@ -1,6 +1,6 @@
 #include "macros.hpp"
 /**
- * PerformanceMonitir - clientInit
+ * PerformanceMonitir - serverInit
  * 
  * Author: Raven
  * 
