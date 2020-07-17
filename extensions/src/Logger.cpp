@@ -7,7 +7,11 @@
 
 #include "DllEntry.hpp"
 #include <string>
-#include <filesystem>
+#ifdef EXPERIMENTAL_FILESYSTEM
+	#include <experimental/filesystem>
+#else
+	#include <filesystem>
+#endif
 #include <iostream>
 #include <chrono>
 #include <ctime>

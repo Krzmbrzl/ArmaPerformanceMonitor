@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.10)
+include(CheckIncludeFileCXX)
 
 # project name
 project(logger)
@@ -26,6 +27,19 @@ else(Build64)
     set_target_properties(logger PROPERTIES PREFIX "" OUTPUT_NAME "logger")
 endif(Build64)
 
+
+CHECK_INCLUDE_FILE_CXX("filesystem" FOUND_FILESYSTEM_HEADERS)
+if(FOUND_FILESYSTEM_HEADERS)
+	message("Found <filesystem> header file")
+else()
+	CHECK_INCLUDE_FILE_CXX("experimental/filesystem" FOUND_EXP_FILESYSTEM_HEADERS)
+	if(NOT FOUND_EXP_FILESYSTEM_HEADERS)
+		message(FATAL_ERROR "Unable to include <filesystem> or <experimental/filesystem>")
+	else()
+		message("Using <experimental/filesystem> headers")
+		add_definitions(-DEXPERIMENTAL_FILESYSTEM)
+	endif()
+endif()
 
 
 # Detect whether compilation is done on linux
