@@ -96,8 +96,8 @@ void RVExtension(char *armaOutput, int outputSize, const char *in) {
 	time(&rawtime);
 	timeinfo = localtime(&rawtime);
 
-	strftime(buffer,sizeof(buffer),"%d-%m-%Y %H:%M:%S", timeinfo);
+	strftime(buffer,sizeof(buffer),"%Y-%m-%d %H:%M:%S", timeinfo);
 	std::string strTime(buffer);
 
-	logStream << strTime << " - " <<  in << std::endl;
+	logStream << strTime << "\t" << in << std::endl;
 }

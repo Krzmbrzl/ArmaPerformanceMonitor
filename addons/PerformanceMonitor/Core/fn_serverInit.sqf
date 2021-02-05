@@ -19,8 +19,8 @@
 	PERF_INFO_RECEIVE,
 	{
 		_this select 0 params["_sender", "_fps"];
-		
-		"logger" callExtension format ["%1;%2;", _sender, _fps];
+		private _separator = toString [9]; // tabulator
+		"logger" callExtension format ["%1%2%3", _sender, _separator, _fps];
 	}
 ] call CFUNC(addEventHandler);
 
