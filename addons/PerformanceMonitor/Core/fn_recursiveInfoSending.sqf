@@ -24,7 +24,7 @@ if !(GVAR(FrameWindowStartNumber) isEqualTo 0) then {
 	private _passedTime = diag_tickTime - GVAR(FrameWindowStart);
 	
 	// calculate FPS and send to server
-	[PERF_INFO_RECEIVE, [[getPlayerUID player, "0"] select isServer, _numberOfFrames / _passedTime]] call CFUNC(serverEvent);
+	[PERF_INFO_RECEIVE, [[name player, "__Server"] select isServer, [getPlayerUID player, "0"] select isServer, _numberOfFrames / _passedTime]] call CFUNC(serverEvent);
 };
 
 // set varaibles for next run
