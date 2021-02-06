@@ -88,7 +88,7 @@ void RVExtension(char *armaOutput, int outputSize, const char *in) {
 
 	static std::ofstream logStream(logFilePath, std::ios_base::app);
 
-	// cretea timestamp
+	// create timestamp
 	time_t rawtime;
 	struct tm * timeinfo;
 	char buffer[80];
