@@ -75,7 +75,7 @@ void RVExtension(char *armaOutput, int outputSize, const char *in) {
 		time(&rawtime);
 		timeinfo = localtime(&rawtime);
 
-		strftime(buffer,sizeof(buffer),"%d-%m-%Y_%H:%M:%S", timeinfo);
+		strftime(buffer,sizeof(buffer),"%Y-%m-%d_%H_%M_%S", timeinfo);
 		std::string strTime(buffer);
 
 		logFilePath = currentPath + "performanceLogs";
@@ -88,7 +88,7 @@ void RVExtension(char *armaOutput, int outputSize, const char *in) {
 
 	static std::ofstream logStream(logFilePath, std::ios_base::app);
 
-	// cretea timestamp
+	// create timestamp
 	time_t rawtime;
 	struct tm * timeinfo;
 	char buffer[80];
@@ -96,8 +96,8 @@ void RVExtension(char *armaOutput, int outputSize, const char *in) {
 	time(&rawtime);
 	timeinfo = localtime(&rawtime);
 
-	strftime(buffer,sizeof(buffer),"%d-%m-%Y %H:%M:%S", timeinfo);
+	strftime(buffer,sizeof(buffer),"%Y-%m-%d %H:%M:%S", timeinfo);
 	std::string strTime(buffer);
 
-	logStream << strTime << " - " <<  in << std::endl;
+	logStream << strTime << "\t" << in << std::endl;
 }
