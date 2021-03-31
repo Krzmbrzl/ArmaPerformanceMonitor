@@ -75,7 +75,7 @@ void RVExtension(char *armaOutput, int outputSize, const char *in) {
 		time(&rawtime);
 		timeinfo = localtime(&rawtime);
 
-		strftime(buffer,sizeof(buffer),"%Y-%m-%d_%H:%M:%S", timeinfo);
+		strftime(buffer,sizeof(buffer),"%Y-%m-%d_%H_%M_%S", timeinfo);
 		std::string strTime(buffer);
 
 		logFilePath = currentPath + "performanceLogs";
