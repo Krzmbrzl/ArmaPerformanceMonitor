@@ -19,7 +19,7 @@
 // abort if sending is turned off
 if (!GVAR(isSendingPerformanceInfo)) exitWith {};
 
-if !(GVAR(FrameWindowStartNumber) isEqualTo 0) then {
+if !(GVAR(FrameWindowStartNumber) isEqualTo 0 || isGamePaused) then {
 	private _numberOfFrames = diag_frameNo - GVAR(FrameWindowStartNumber);
 	private _passedTime = diag_tickTime - GVAR(FrameWindowStart);
 	
